@@ -1,0 +1,6 @@
+{
+  "name": "Karachi Brasserie - All Day Eatery",
+  "description": "An exceptional fine-dining experience in Saddar, Karachi. Discover handcrafted favorites, artisanal pizzas, steaks, pastas, and premium beverages.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
