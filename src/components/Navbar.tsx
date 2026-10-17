@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { RESTAURANT_DETAILS } from '../data/menuData';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface NavbarProps {
   onBookClick: () => void;
@@ -68,7 +69,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onMenuClick }) => {
         </nav>
 
         {/* Right CTA Button */}
-        <div className="hidden sm:flex items-center space-x-4">
+        <div className="hidden sm:flex items-center space-x-3 md:space-x-4">
+          {/* Call Link */}
           <a
             href={`tel:${RESTAURANT_DETAILS.phone}`}
             className="hidden md:flex items-center text-xs tracking-wider text-[#C9A96E] hover:text-[#DFC798] transition-colors"
@@ -77,16 +79,40 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onMenuClick }) => {
             <span className="font-mono">{RESTAURANT_DETAILS.phoneFormatted}</span>
           </a>
 
+          {/* Green Order on WhatsApp Button */}
+          <a
+            href={RESTAURANT_DETAILS.whatsappOrderUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3.5 py-2 text-xs font-semibold tracking-wider uppercase bg-[#25D366] hover:bg-[#20ba5a] text-white transition-all duration-300 shadow-md shadow-[#25D366]/20 hover:shadow-[#25D366]/35 active:scale-95 inline-flex items-center cursor-pointer group"
+            aria-label="Order on WhatsApp (+92 330 8880773)"
+          >
+            <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+            <span className="hidden xl:inline">Order on WhatsApp</span>
+            <span className="xl:hidden">WhatsApp</span>
+          </a>
+
+          {/* Book a Table */}
           <button
             onClick={onBookClick}
-            className="px-5 py-2.5 text-xs font-semibold tracking-[0.18em] uppercase bg-[#C9A96E] hover:bg-[#DFC798] text-[#101010] transition-all duration-300 shadow-lg shadow-[#C9A96E]/15 hover:shadow-[#C9A96E]/30 active:scale-95 cursor-pointer"
+            className="px-4 lg:px-5 py-2 text-xs font-semibold tracking-[0.18em] uppercase bg-[#C9A96E] hover:bg-[#DFC798] text-[#101010] transition-all duration-300 shadow-lg shadow-[#C9A96E]/15 hover:shadow-[#C9A96E]/30 active:scale-95 cursor-pointer whitespace-nowrap"
           >
             Book a Table
           </button>
         </div>
 
-        {/* Mobile Hamburger Toggle */}
+        {/* Mobile Hamburger Toggle & Quick WhatsApp Action */}
         <div className="flex sm:hidden items-center space-x-2">
+          <a
+            href={RESTAURANT_DETAILS.whatsappOrderUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 bg-[#25D366] text-white rounded-sm shadow-md"
+            aria-label="Order on WhatsApp (+92 330 8880773)"
+          >
+            <WhatsAppIcon className="w-4 h-4" />
+          </a>
+
           <button
             onClick={onBookClick}
             className="px-3 py-1.5 text-[10px] font-semibold tracking-wider uppercase bg-[#C9A96E] text-[#101010]"
@@ -121,14 +147,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onMenuClick }) => {
           </nav>
 
           <div className="pt-2 flex flex-col space-y-3">
+            {/* Direct Phone Call Button */}
             <a
               href={`tel:${RESTAURANT_DETAILS.phone}`}
-              className="flex items-center text-xs tracking-wider text-[#C9A96E] py-1"
+              className="flex items-center text-xs tracking-wider text-[#C9A96E] py-1 font-mono"
             >
               <Phone className="w-4 h-4 mr-2" />
               <span>Call: {RESTAURANT_DETAILS.phoneFormatted}</span>
             </a>
 
+            {/* Green Order on WhatsApp Button in Mobile Drawer */}
+            <a
+              href={RESTAURANT_DETAILS.whatsappOrderUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-3 text-center text-xs font-semibold tracking-[0.18em] uppercase bg-[#25D366] hover:bg-[#20ba5a] text-white transition-all shadow-md inline-flex items-center justify-center gap-2"
+            >
+              <WhatsAppIcon className="w-4 h-4" />
+              <span>Order on WhatsApp</span>
+            </a>
+
+            {/* Book a Table */}
             <button
               onClick={() => {
                 setMobileMenuOpen(false);

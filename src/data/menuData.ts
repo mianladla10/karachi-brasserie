@@ -942,6 +942,9 @@ export const RESTAURANT_DETAILS = {
   phone: '0330 8880773',
   phoneFormatted: '0330 8880773',
   whatsappRaw: '923308880773',
+  whatsappFormatted: '+92 330 8880773',
+  whatsappOrderMessage: 'Assalam-o-Alaikum! I would like to place an order from Karachi Brasserie.',
+  whatsappOrderUrl: `https://wa.me/923308880773?text=${encodeURIComponent('Assalam-o-Alaikum! I would like to place an order from Karachi Brasserie.')}`,
   instagram: '@karachibrasserie',
   instagramUrl: 'https://instagram.com/karachibrasserie',
   address: {

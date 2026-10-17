@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, Phone, Instagram, Clock, Navigation, ExternalLink } from 'lucide-react';
 import { RESTAURANT_DETAILS } from '../data/menuData';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const ContactSection: React.FC = () => {
   return (
@@ -65,23 +66,37 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Phone */}
+                {/* Phone & WhatsApp Ordering */}
                 <div className="flex items-start space-x-4">
                   <div className="p-3 bg-[#1B1B1B] border border-[#C9A96E]/30 text-[#C9A96E] shrink-0 mt-0.5">
                     <Phone className="w-5 h-5" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h4 className="text-xs uppercase tracking-wider text-[#C9A96E] font-medium mb-1">
                       Direct Inquiries & Bookings
                     </h4>
-                    <a
-                      href={`tel:${RESTAURANT_DETAILS.phone}`}
-                      className="font-mono text-base sm:text-lg font-bold text-[#C9A96E] hover:text-[#DFC798] transition-colors"
-                    >
-                      {RESTAURANT_DETAILS.phoneFormatted}
-                    </a>
-                    <p className="text-[11px] text-[#F5F0E8]/60 mt-0.5 font-light">
-                      Available for table reservations and takeaway orders
+                    <div className="flex flex-wrap items-center gap-3">
+                      <a
+                        href={`tel:${RESTAURANT_DETAILS.phone}`}
+                        className="font-mono text-base sm:text-lg font-bold text-[#C9A96E] hover:text-[#DFC798] transition-colors"
+                      >
+                        {RESTAURANT_DETAILS.phoneFormatted}
+                      </a>
+
+                      {/* Green Order on WhatsApp Button near Phone Number */}
+                      <a
+                        href={RESTAURANT_DETAILS.whatsappOrderUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-3.5 py-1.5 rounded-sm bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold tracking-wider transition-all duration-300 shadow-md shadow-[#25D366]/20 active:scale-95 cursor-pointer group"
+                        aria-label="Order on WhatsApp with +92 330 8880773"
+                      >
+                        <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                        <span>Order on WhatsApp</span>
+                      </a>
+                    </div>
+                    <p className="text-[11px] text-[#F5F0E8]/60 mt-1.5 font-light">
+                      Available for table reservations and takeaway orders via call or WhatsApp ({RESTAURANT_DETAILS.whatsappFormatted})
                     </p>
                   </div>
                 </div>
@@ -130,33 +145,48 @@ export const ContactSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Three Required Action Buttons: CALL NOW, GET DIRECTIONS, FOLLOW ON INSTAGRAM */}
-            <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {/* Action Buttons: Order on WhatsApp, CALL NOW, GET DIRECTIONS, FOLLOW ON INSTAGRAM */}
+            <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {/* Green Order on WhatsApp Button */}
+              <a
+                href={RESTAURANT_DETAILS.whatsappOrderUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-3 px-3 text-center text-xs font-semibold tracking-wider uppercase bg-[#25D366] hover:bg-[#20ba5a] text-white transition-all duration-300 shadow-lg shadow-[#25D366]/25 hover:shadow-[#25D366]/40 cursor-pointer inline-flex items-center justify-center group active:scale-95"
+                aria-label="Order on WhatsApp"
+              >
+                <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                <span>ORDER ON WHATSAPP</span>
+              </a>
+
+              {/* CALL NOW Button (Kept working) */}
               <a
                 href={`tel:${RESTAURANT_DETAILS.phone}`}
-                className="py-3 px-4 text-center text-xs font-semibold tracking-wider uppercase bg-[#C9A96E] hover:bg-[#DFC798] text-[#101010] transition-colors cursor-pointer shadow-md inline-flex items-center justify-center"
+                className="py-3 px-3 text-center text-xs font-semibold tracking-wider uppercase bg-[#C9A96E] hover:bg-[#DFC798] text-[#101010] transition-colors cursor-pointer shadow-md inline-flex items-center justify-center active:scale-95"
               >
-                <Phone className="w-3.5 h-3.5 mr-1.5" />
+                <Phone className="w-3.5 h-3.5 mr-1.5 shrink-0" />
                 CALL NOW
               </a>
 
+              {/* GET DIRECTIONS */}
               <a
                 href={RESTAURANT_DETAILS.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-4 text-center text-xs font-semibold tracking-wider uppercase border border-[#C9A96E]/60 hover:border-[#C9A96E] hover:bg-[#C9A96E]/10 text-[#F5F0E8] transition-colors cursor-pointer inline-flex items-center justify-center"
+                className="py-3 px-3 text-center text-xs font-semibold tracking-wider uppercase border border-[#C9A96E]/60 hover:border-[#C9A96E] hover:bg-[#C9A96E]/10 text-[#F5F0E8] transition-colors cursor-pointer inline-flex items-center justify-center active:scale-95"
               >
-                <Navigation className="w-3.5 h-3.5 mr-1.5 text-[#C9A96E]" />
+                <Navigation className="w-3.5 h-3.5 mr-1.5 text-[#C9A96E] shrink-0" />
                 GET DIRECTIONS
               </a>
 
+              {/* FOLLOW ON IG */}
               <a
                 href={RESTAURANT_DETAILS.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-4 text-center text-xs font-semibold tracking-wider uppercase border border-white/20 hover:border-[#C9A96E] hover:bg-white/5 text-[#F5F0E8] transition-colors cursor-pointer inline-flex items-center justify-center"
+                className="py-3 px-3 text-center text-xs font-semibold tracking-wider uppercase border border-white/20 hover:border-[#C9A96E] hover:bg-white/5 text-[#F5F0E8] transition-colors cursor-pointer inline-flex items-center justify-center active:scale-95"
               >
-                <Instagram className="w-3.5 h-3.5 mr-1.5 text-[#C9A96E]" />
+                <Instagram className="w-3.5 h-3.5 mr-1.5 text-[#C9A96E] shrink-0" />
                 FOLLOW ON IG
               </a>
             </div>

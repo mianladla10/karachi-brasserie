@@ -10,6 +10,7 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { FullMenuModal } from './components/FullMenuModal';
 import { DishDetailModal } from './components/DishDetailModal';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { MenuItem } from './data/menuData';
 
 export default function App() {
@@ -96,6 +97,9 @@ export default function App() {
         onMenuClick={handleMenuClick}
         onBookClick={handleBookTableClick}
       />
+
+      {/* FLOATING WHATSAPP ORDERING BUTTON */}
+      <FloatingWhatsApp />
 
       {/* FULL MENU MODAL */}
       <FullMenuModal

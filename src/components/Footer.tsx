@@ -1,6 +1,7 @@
 import React from 'react';
 import { Phone, MapPin, Instagram, ArrowUp } from 'lucide-react';
 import { RESTAURANT_DETAILS } from '../data/menuData';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface FooterProps {
   onMenuClick: () => void;
@@ -102,13 +103,24 @@ export const Footer: React.FC<FooterProps> = ({ onMenuClick, onBookClick }) => {
                 </span>
               </div>
 
-              <div className="flex items-center space-x-2.5">
-                <Phone className="w-4 h-4 text-[#C9A96E] shrink-0" />
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="flex items-center space-x-2.5">
+                  <Phone className="w-4 h-4 text-[#C9A96E] shrink-0" />
+                  <a
+                    href={`tel:${RESTAURANT_DETAILS.phone}`}
+                    className="hover:text-[#C9A96E] font-mono transition-colors"
+                  >
+                    {RESTAURANT_DETAILS.phoneFormatted}
+                  </a>
+                </div>
                 <a
-                  href={`tel:${RESTAURANT_DETAILS.phone}`}
-                  className="hover:text-[#C9A96E] font-mono transition-colors"
+                  href={RESTAURANT_DETAILS.whatsappOrderUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-[11px] font-semibold tracking-wider text-white bg-[#25D366] hover:bg-[#20ba5a] px-2.5 py-1 rounded-xs transition-colors ml-1"
                 >
-                  {RESTAURANT_DETAILS.phoneFormatted}
+                  <WhatsAppIcon className="w-3 h-3 mr-1" />
+                  Order on WhatsApp
                 </a>
               </div>
 
