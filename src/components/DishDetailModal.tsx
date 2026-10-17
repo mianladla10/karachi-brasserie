@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, Phone, MessageSquare, Utensils } from 'lucide-react';
 import { MenuItem, RESTAURANT_DETAILS } from '../data/menuData';
+import { FoodImage } from './FoodImage';
 
 interface DishDetailModalProps {
   dish: MenuItem | null;
@@ -32,29 +33,28 @@ export const DishDetailModal: React.FC<DishDetailModalProps> = ({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 text-white/70 hover:text-[#C9A96E] bg-black/50 hover:bg-black/80 rounded-full transition-colors"
+          className="absolute top-4 right-4 z-20 p-2 text-white/70 hover:text-[#C9A96E] bg-black/50 hover:bg-black/80 rounded-full transition-colors cursor-pointer"
           aria-label="Close dish preview"
         >
           <X className="w-5 h-5" />
         </button>
 
-        {/* Optional Image */}
-        {dish.image && (
-          <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
-            <img
-              src={dish.image}
-              alt={dish.name}
-              referrerPolicy="no-referrer"
-              className="w-full h-full object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent" />
-            <div className="absolute top-4 left-4">
-              <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-[#101010] bg-[#C9A96E] px-3 py-1 shadow-md">
-                {dish.category}
-              </span>
-            </div>
+        {/* Dish Image */}
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
+          <FoodImage
+            src={dish.image}
+            fallbackSrc={dish.fallbackImage}
+            alt={dish.name}
+            category={dish.category}
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent pointer-events-none" />
+          <div className="absolute top-4 left-4">
+            <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-[#101010] bg-[#C9A96E] px-3 py-1 shadow-md">
+              {dish.category}
+            </span>
           </div>
-        )}
+        </div>
 
         {/* Dish Content */}
         <div className="p-6 sm:p-8 space-y-5">

@@ -1,5 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { FoodImage } from './FoodImage';
+import { LOCAL_IMAGES } from '../assets/images';
 
 interface FeaturedItem {
   id: string;
@@ -8,6 +10,7 @@ interface FeaturedItem {
   category: string;
   description: string;
   image: string;
+  fallbackImage?: string;
   tag: string;
 }
 
@@ -23,7 +26,8 @@ const FEATURED_ITEMS: FeaturedItem[] = [
     price: 1560,
     category: 'Chicken',
     description: 'Golden parmesan crusted chicken fillet served with mashed potatoes, sauté vegetables, and velvety cheese sauce.',
-    image: '/src/assets/images/parmesan_chicken_1792237135987.jpg',
+    image: '/images/parmesan_chicken.jpg',
+    fallbackImage: LOCAL_IMAGES.parmesanChicken,
     tag: 'Guest Favorite'
   },
   {
@@ -32,7 +36,8 @@ const FEATURED_ITEMS: FeaturedItem[] = [
     price: 1540,
     category: 'Pizza',
     description: 'House special fajita sauce, tender spiced chicken, sweet peppers, olives, sweet corn, and bubbly golden mozzarella.',
-    image: '/src/assets/images/fajita_pizza_1792237136155.jpg',
+    image: '/images/fajita_pizza.jpg',
+    fallbackImage: LOCAL_IMAGES.fajitaPizza,
     tag: 'Artisanal Pizza'
   },
   {
@@ -41,7 +46,8 @@ const FEATURED_ITEMS: FeaturedItem[] = [
     price: 1360,
     category: 'Sandwiches',
     description: 'Succulent grilled chicken, melted cheese, crisp greens served between freshly baked artisanal herb focaccia.',
-    image: '/src/assets/images/chicken_sandwich_1792237136658.jpg',
+    image: '/images/chicken_sandwich.jpg',
+    fallbackImage: LOCAL_IMAGES.chickenSandwich,
     tag: 'House Specialty'
   },
   {
@@ -50,7 +56,8 @@ const FEATURED_ITEMS: FeaturedItem[] = [
     price: 880,
     category: 'Desserts',
     description: 'Warm fudge brownie topped with a chilled scoop of vanilla bean ice cream and artfully drizzled chocolate reduction.',
-    image: '/src/assets/images/brownie_dessert_1792237137046.jpg',
+    image: '/images/brownie_dessert.jpg',
+    fallbackImage: LOCAL_IMAGES.brownieDessert,
     tag: 'Sweet Indulgence'
   }
 ];
@@ -90,10 +97,11 @@ export const FeaturedFood: React.FC<FeaturedFoodProps> = ({ onViewMenuCategory, 
             >
               {/* Top Image Container */}
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-black/40">
-                <img
+                <FoodImage
                   src={item.image}
+                  fallbackSrc={item.fallbackImage}
                   alt={item.name}
-                  referrerPolicy="no-referrer"
+                  category={item.category}
                   className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1B1B1B] via-transparent to-black/20" />

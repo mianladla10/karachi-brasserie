@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, X, Sparkles, Filter, ChevronRight, Eye } from 'lucide-react';
 import { ALL_MENU_ITEMS, MENU_CATEGORIES, MenuItem } from '../data/menuData';
+import { FoodImage } from './FoodImage';
 
 interface MenuPreviewProps {
   initialCategory?: string;
@@ -139,19 +140,16 @@ export const MenuPreview: React.FC<MenuPreviewProps> = ({
                 onClick={() => onDishSelect(item)}
                 className="group relative p-4 bg-[#1B1B1B]/50 hover:bg-[#1B1B1B] border border-white/5 hover:border-[#C9A96E]/50 transition-all duration-300 cursor-pointer flex items-start gap-4"
               >
-                {/* Optional thumbnail if dish has photography */}
-                {item.image ? (
-                  <div className="w-20 h-20 shrink-0 overflow-hidden bg-black/40 border border-[#C9A96E]/20">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-1.5 self-stretch bg-[#C9A96E]/30 group-hover:bg-[#C9A96E] transition-colors shrink-0" />
-                )}
+                {/* Food Image Thumbnail */}
+                <div className="w-20 h-20 sm:w-24 sm:h-24 shrink-0 overflow-hidden bg-black/40 border border-[#C9A96E]/20">
+                  <FoodImage
+                    src={item.image}
+                    fallbackSrc={item.fallbackImage}
+                    alt={item.name}
+                    category={item.category}
+                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline justify-between gap-3 mb-1">

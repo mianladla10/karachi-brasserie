@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { X, Search, Sparkles, ChevronDown } from 'lucide-react';
 import { ALL_MENU_ITEMS, MENU_CATEGORIES, MenuItem } from '../data/menuData';
+import { FoodImage } from './FoodImage';
 
 interface FullMenuModalProps {
   isOpen: boolean;
@@ -149,16 +150,15 @@ export const FullMenuModal: React.FC<FullMenuModalProps> = ({ isOpen, onClose, o
                       }}
                       className="p-3.5 bg-[#181818]/70 hover:bg-[#1E1E1E] border border-white/5 hover:border-[#C9A96E]/40 transition-all flex items-start gap-3.5 cursor-pointer group"
                     >
-                      {item.image && (
-                        <div className="w-16 h-16 shrink-0 overflow-hidden bg-black border border-[#C9A96E]/20">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            referrerPolicy="no-referrer"
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform"
-                          />
-                        </div>
-                      )}
+                      <div className="w-16 h-16 shrink-0 overflow-hidden bg-black border border-[#C9A96E]/20">
+                        <FoodImage
+                          src={item.image}
+                          fallbackSrc={item.fallbackImage}
+                          alt={item.name}
+                          category={item.category}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                        />
+                      </div>
 
                       <div className="flex-1 min-w-0">
                         <div className="flex items-baseline justify-between gap-2">

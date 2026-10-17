@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowDown, MapPin, Sparkles } from 'lucide-react';
+import { LOCAL_IMAGES } from '../assets/images';
 
 interface HeroProps {
   onExploreMenu: () => void;
@@ -15,9 +16,18 @@ export const Hero: React.FC<HeroProps> = ({ onExploreMenu, onReserveTable }) => 
       {/* Background Image with Cinematic Dark Scrim */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/src/assets/images/pizza_hero_1792237134387.jpg"
+          src="/images/pizza_hero.jpg"
           alt="Karachi Brasserie Artisanal Pizza"
-          referrerPolicy="no-referrer"
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (target.src.indexOf('LOCAL_IMAGES') === -1 && target.src !== LOCAL_IMAGES.pizzaHero) {
+              target.src = LOCAL_IMAGES.pizzaHero;
+            } else if (target.src.indexOf('pexels') === -1) {
+              target.src = 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=1920';
+            } else if (target.src.indexOf('unsplash') === -1) {
+              target.src = 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1920&q=80';
+            }
+          }}
           className="w-full h-full object-cover object-center scale-105 animate-pulse-slow transition-transform duration-1000 ease-out"
         />
         {/* Layered luxury gradient overlays */}

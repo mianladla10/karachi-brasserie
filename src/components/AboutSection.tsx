@@ -20,8 +20,14 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onDiscoverMenu, onRe
             <div className="relative z-10 border border-[#C9A96E]/30 p-2 sm:p-3 bg-[#101010]/60 shadow-2xl shadow-black/80">
               <div className="relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden">
                 <img
-                  src="/src/assets/images/brasserie_ambiance_1792237156928.jpg"
+                  src="/images/brasserie_ambiance.jpg"
                   alt="Karachi Brasserie Saddar Dining Room Ambiance"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (target.src !== 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') {
+                      target.src = 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80';
+                    }
+                  }}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700 ease-out"
                 />
